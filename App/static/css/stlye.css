@@ -1,0 +1,122 @@
+/* Reset CSS */
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url('img2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; /* Text color */
+}
+
+/* Container Styles */
+.container {
+    margin-top: 50px;
+}
+
+/* Card Styles */
+.card {
+    width: 100%;
+}
+
+/* Card Header Styles */
+.card-header {
+    text-align: center;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.selectpicker option {
+    background-color: #fff; /* Set the background color for selected option */
+    color: #013364; /* Set the text color for selected option */ 
+}
+
+/* Select Styles */
+.selectpicker,
+.form-control,
+.btn-primary {
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.selectpicker {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #28a745; /* Green border color */
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #ffffff;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px; /* Add margin to the bottom */
+}
+
+/* Input Styles */
+.form-control {
+    width: 50%;
+    padding: 12px;
+    border: 1px solid #e6e6e6; /* Green border color */
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #fafafa;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 40px;
+}
+/* Button Styles */
+.btn-primary {
+    width: 30%;
+    padding: 12px;
+    border: 1px solid #d9d9d9; 
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #007bff;
+    height: 40px;
+    margin-top: 30px; /* Add margin to the top */
+}
+.card-body {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    color: #fff; /* Set the text color to white or a suitable contrasting color */
+    padding: 15px; /* Add some padding to the card body */
+    border-radius: 10px; /* Add border-radius for rounded corners if desired */
+}
+
+
+/* Prediction Styles */
+#prediction {
+    color: #007bff;
+    font-family: 'Your Desired Font', sans-serif; /* Replace 'Your Desired Font' with the actual font name */
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold;
+}
+
+/* Center Alignment Styles */
+.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+/* Add these styles to change the font for h1 and h5 */
+h1 {
+    font-family: 'Your Desired Font', sans-serif; /* Replace 'Your Desired Font' with the actual font name */
+    font-size: 36px; /* Adjust the font size as needed */
+    font-weight: bold;
+}
+
+h5 {
+    font-family: 'Your Desired Font', sans-serif; /* Replace 'Your Desired Font' with the actual font name */
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: normal; /* You can use 'bold' if you want it to be bold */
+}

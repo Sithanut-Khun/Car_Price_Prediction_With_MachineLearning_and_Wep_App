@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title>Car Price Predictor</title>
+    <link rel="stylesheet" href="static\css\stlye.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    <title> Car Price Predictor </title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="card mt-50 mx-auto" styles="width: 100%">
+                <div class="card-header" style="text-align: center">
+                    <div class="col-12", style="text-align: center">
+                        <h1>Welcome to Car Price Prediction Form</h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="col-12" style="text-align: center">
+                        <h5>This form predicts the price of a car you want to buy and sell. Try filling the details below: </h5>
+                    </div>
+                    <br>
+                    <form method="post" action="#" accept-charset="utf-8">
+                        <div class="col-10 form-group mx-auto text-center">   
+                            <select class="selectpicker form-control text-center" id="Brand" name="Brand" required="1"
+                             onchange="load_titles(this.id,'Title')">
+                                {% for Brand in brands %}
+                                    <option value="{{ Brand }}">{{ Brand }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            <select class="selectpicker form-control text-center" id="Title" name="Title" required="1">
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            <select class="selectpicker form-control text-center" id="Year" name="Year" required="1">
+                                {% for Year in years %}
+                                    <option value="{{ Year }}">{{ Year }}</option>
+                                {% endfor %}
+                                </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            
+                            <select class="selectpicker form-control text-center" id="Condition" name="Condition" required="1">
+                                {% for Condition in used_or_new_options %}
+                                    <option value="{{ Condition }}">{{ Condition }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            
+                            <select class="selectpicker form-control text-center" id="Transmission" name="Transmission" required="1">
+                                {% for Transmission in transmission_options %}
+                                    <option value="{{ Transmission }}">{{ Transmission }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                          
+                            <select class="selectpicker form-control text-center" id="FuelType" name="FuelType" required="1">
+                                {% for FuelType in fuel_type_options %}
+                                    <option value="{{ FuelType }}">{{ FuelType }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            
+                            <select class="selectpicker form-control text-center" id="Cylinder" name="Cylinder" required="1">
+                                {% for Cylinder in cylindersinengine_type_options %}
+                                    <option value="{{ Cylinder }}">{{ Cylinder }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            
+                            <select class="selectpicker form-control text-center" id="BodyType" name="BodyType" required="1">
+                                {% for BodyType in body_type_options %}
+                                    <option value="{{ BodyType }}">{{ BodyType }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            
+                            <select class="selectpicker form-control text-center" id="Colour" name="Colour" required="1">
+                                {% for Colour in color_options %}
+                                    <option value="{{ Colour }}">{{ Colour }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            
+                            <input class="form-control text-center " type="text"name="Kilometres" placeholder="Enter no. of kilometres driven">
+                        </div>
+                        <div class="col-10 form-group mx-auto text-center">
+                            <button class="btn btn-primary form-control" onclick="send_data()">Predict</button>
+                        </div>   
+                    </form>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 mx-auto text-center">
+                            <h4><span id="prediction"></span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+<script>
+
+
+    function load_titles(Brand_id, Title_id) {
+        var brand = document.getElementById(Brand_id);
+        var title = document.getElementById(Title_id);
+        console.log(brand.value);
+        title.value = "";
+        title.innerHTML = "";
+    
+        {% for Brand in brands %}
+            if (brand.value == "{{ Brand }}") {
+                {% for Title in titles %}
+                    {% if Brand in Title %}
+                        var newOption = document.createElement("option");
+                        newOption.value = "{{ Title }}";
+                        newOption.innerHTML = "{{ Title }}";
+                        title.options.add(newOption);
+                    {% endif %}
+                {% endfor %}
+            }
+        {% endfor %}
+    }
+    function form_handler(event) {
+        event.preventDefault(); // Don't submit the form normally
+    }
+    function send_data()
+    {
+        document.querySelector('form').addEventListener("submit",form_handler);
+
+        var fd=new FormData(document.querySelector('form'));
+
+        var xhr= new XMLHttpRequest({mozSystem: true});
+
+        xhr.open('POST','/predict',true);
+        document.getElementById('prediction').innerHTML="Wait! Predicting Price.....";
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == XMLHttpRequest.DONE){
+                document.getElementById('prediction').innerHTML="Predicted Price: $"+xhr.responseText;
+
+            }
+        };
+
+        xhr.onload= function(){};
+
+        xhr.send(fd);
+    }
+    
+
+</script>
+
+  
+</body>
+</html>
